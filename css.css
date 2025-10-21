@@ -1,0 +1,10 @@
+.test-button{
+    width: 25rem;
+    background-color: yellow;
+}
+
+.test-button:hover {
+    transition: 1s;
+    width: 30rem;
+    background-color: rgb(177, 177, 0);
+}
