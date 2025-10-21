@@ -10,20 +10,32 @@
 </head>
 
 <body>
-    <div class="test-div">
-        <button class="test-button" id="test-button" onclick="addOne(amountPressed)">
-            Gia Huy Nguyen Truong loves Jellymiah Ling
+    <div class="parent-container">
+
+    <div class="inner-container-horizontal">
+        <header>Clicker Game</header>
+    </div>
+    
+    <div class="bottom-row">
+    <div class="inner-container-vertical">
+        <button class="test-button" id="test-button" onclick="addClicks()">
+            Click Me!
         </button>
 
         <p>Click Counter: <span id="counter">0</span></p> 
 
-    </div>
+    </div> <!-- click me button ic-->
 
-    <div>
-        <button class="test-button" id="upgrade" onclick="upgrade(5)"> Upgrade </button>
-    </div>
+    <div class="inner-container-vertical">
+        <button class="test-button" name="add" id="upgrade" onclick="upgrade(5, 'add', 1)"> Add +1 </button>
+        <button class="test-button" name="multiply" id="upgrade" onclick="upgrade(25, 'multiply', 2)"> Multiply by 2 </button>
+    </div> <!-- upgrade ic-->
+    
+    </div> <!-- bottom row-->
 
+    </div> <!-- bottom row-->
 
+    </div> <!-- parent container-->
 
     <script src="javascript.js"></script>
 
