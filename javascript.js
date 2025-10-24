@@ -1,18 +1,24 @@
-let numOfClicks = 0
-let clickPower = 1
-let idleClicks = 0
+const gameState = {
+    numOfClicks: 0,
+    clickPower: 1,
+    idleClicks: 0
+}
 
 function updateClicks() {
-    document.getElementById("counter").textContent = numOfClicks
+    document.getElementById("counter").textContent = gameState.numOfClicks;
 }
 
 function addClicks() {
-    numOfClicks += clickPower
-    updateClicks()
+    gameState.numOfClicks += gameState.clickPower;
+    updateClicks();
 }
 
+function buyUpgrade(required, which, increaseType, amount) {
+    const upgrade = new Upgrades(required, which, increaseType, amount);
+    upgrade.upgradeChecker();
+}
 
-class upgrades {
+class Upgrades {
     /**
         Includes: 
         - upgrade effects
@@ -23,45 +29,50 @@ class upgrades {
         /**
             * @param {*} required - the number of clicks needed for the upgarde
             * @param {*} which - the type of upgrade (e.g. CPS or Clicker Button)
-            * @param {*} increaseType - the 
+            * @param {*} increaseType - the type of increase (e.g. multiply or add)
             * @param {*} amount - the amount increased
          */
-        this.required = required
-        this.which = which
-        this.increaseType = increaseType
-        this.amount = amount
-    }
+        this.required = required;
+        this.which = which;
+        this.increaseType = increaseType;
+        this.amount = amount;
 
-    upgradeEffects = {
-        // map of the upgrade effects and arrow function for the effect
-        add: (x, amount) => x + amount,
-        multiply: (x, amount) => x * amount,
+        this.upgradeEffects = {
+        /** 
+         * map of the upgrade effects and arrow function for the effect
+         * 
+         * @param {*} which - click power or clicks per sec
+         * @param {*} amount - amount to be changed by
+         * @returns - new amount gained per click/sec
+         */
+
+        add: (which, amount) => which + amount,
+        multiply: (which, amount) => which * amount,
+
+    }
     }
 
     upgradeChecker() {
-        if (numOfClicks >= required) {
-            numOfClicks -= required;
-
-            const which = super(which);
-            const amount = super(amount);
+        if (gameState.numOfClicks >= this.required) {
+            gameState.numOfClicks -= this.required;
             
-            this.upgradeEffects.increaseType(which, amount);
+            gameState[this.which] = this.upgradeEffects[this.increaseType](gameState[this.which], this.amount);
 
             updateClicks();
         }
     }
 }
 
-class display extends upgrades{
+//class display extends Upgrades{
     // extend basically passes the construct function of the 
     // upgrade class to this class and then use those values to display stuff
     // idea: could instead do class upgrades extends display and then have clickpower and etc 
     // as part of the constructor in the display class
-}
+    // }
 
-function clicksPerSec(cps) {
-    numOfClicks += cps;   
-}
+// function clicksPerSec(cps) {
+//     gameState.numOfClicks += cps;   
+// }
 
 
 
