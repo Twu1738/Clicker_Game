@@ -1,11 +1,21 @@
 const gameState = {
     numOfClicks: 0,
     clickPower: 1,
-    idleClicks: 0
+    idleClickPower: 0
 }
+
+document.getElementById("main-clicker").addEventListener("click", addClicks);
+
+document.getElementById("main-clicker").addEventListener("click", buyUpgrade(5, 'clickPower', 'add', 1));
+document.getElementById("multiply-1").addEventListener("click", buyUpgrade(25, 'clickPower', 'multiply', 2));
 
 function updateClicks() {
     document.getElementById("counter").textContent = gameState.numOfClicks;
+}
+
+function addIdle() {
+    gameState.numOfClicks += gameState.idleClickPower
+    updateClicks();
 }
 
 function addClicks() {
@@ -68,11 +78,7 @@ class Upgrades {
     // upgrade class to this class and then use those values to display stuff
     // idea: could instead do class upgrades extends display and then have clickpower and etc 
     // as part of the constructor in the display class
-    // }
 
-// function clicksPerSec(cps) {
-//     gameState.numOfClicks += cps;   
 // }
 
-
-
+setInterval(addIdle, 1000)
