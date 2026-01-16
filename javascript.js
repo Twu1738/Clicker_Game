@@ -1,7 +1,7 @@
 const gameState = {
     numOfClicks: 0,
     clickPower: 1,
-    idleClickPower: 1
+    idleClickPower: 0
 }
 
 function updateClicks() {
@@ -78,4 +78,6 @@ class Upgrades {
 //     }
 
 // calls the cps function to add the idleClickPower every second
-setInterval(addIdle, 1000) 
+if (gameState.idleClickPower >= 1) {
+    setInterval(addIdle, 1000) 
+}
