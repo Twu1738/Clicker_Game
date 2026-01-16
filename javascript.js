@@ -1,20 +1,15 @@
 const gameState = {
     numOfClicks: 0,
     clickPower: 1,
-    idleClickPower: 0
+    idleClickPower: 1
 }
-
-document.getElementById("main-clicker").addEventListener("click", addClicks);
-
-document.getElementById("main-clicker").addEventListener("click", buyUpgrade(5, 'clickPower', 'add', 1));
-document.getElementById("multiply-1").addEventListener("click", buyUpgrade(25, 'clickPower', 'multiply', 2));
 
 function updateClicks() {
     document.getElementById("counter").textContent = gameState.numOfClicks;
 }
 
 function addIdle() {
-    gameState.numOfClicks += gameState.idleClickPower
+    gameState.numOfClicks += gameState.idleClickPower;
     updateClicks();
 }
 
@@ -73,12 +68,14 @@ class Upgrades {
     }
 }
 
-//class display extends Upgrades{
-    // extend basically passes the construct function of the 
-    // upgrade class to this class and then use those values to display stuff
-    // idea: could instead do class upgrades extends display and then have clickpower and etc 
-    // as part of the constructor in the display class
+// class Display extends Upgrades{
+//     // extend basically passes the construct function of the 
+//     // upgrade class to this class and then use those values to display stuff
+//     // idea: could instead do class upgrades extends display and then have clickpower and etc 
+//     // as part of the constructor in the display class
 
-// }
 
-setInterval(addIdle, 1000)
+//     }
+
+// calls the cps function to add the idleClickPower every second
+setInterval(addIdle, 1000) 
