@@ -69,15 +69,25 @@ class Upgrades {
 }
 
 // class Display extends Upgrades{
-//     // extend basically passes the construct function of the 
-//     // upgrade class to this class and then use those values to display stuff
-//     // idea: could instead do class upgrades extends display and then have clickpower and etc 
-//     // as part of the constructor in the display class
-
+//     /* 
+//     extend basically passes the construct function of the 
+//     upgrade class to this class and then use those values to display stuff
+//     idea: could instead do class upgrades extends display and then have clickpower and etc 
+//     as part of the constructor in the display class
+//     */ 
 
 //     }
 
+
+// main goes here
+
+
 // calls the cps function to add the idleClickPower every second
+
 if (gameState.idleClickPower >= 1) {
+    idleGain = true
+}
+
+if (idleGain = true) {
     setInterval(addIdle, 1000) 
 }
