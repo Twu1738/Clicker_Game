@@ -25,13 +25,14 @@ class Upgrades {
         - upgrade validator and upgrader
      */
 
-    constructor(required, which, increaseType, amount) {
+    constructor(name, required, which, increaseType, amount) {
         /**
             * @param {*} required - the number of clicks needed for the upgarde
             * @param {*} which - the type of upgrade (e.g. CPS or Clicker Button)
             * @param {*} increaseType - the type of increase (e.g. multiply or add)
             * @param {*} amount - the amount increased
          */
+        this.name = name;
         this.required = required;
         this.which = which;
         this.increaseType = increaseType;
@@ -62,6 +63,12 @@ class Upgrades {
         }
     }
 }
+
+const upgrades = [
+    new Upgrades("Stronger Clicks", 5, "clickPower", add, 1),
+    new Upgrades("Double the Power", 25, "clickPower", multiply, 2),
+    new Upgrades("Passive Income?", 25, "idleClickPower", add, 1)
+]
 
 // class Display extends Upgrades{
 //     /* 
