@@ -13,69 +13,47 @@ function addClicks() {
     updateClicks();
 }
 
-function buyUpgrade(required, which, increaseType, amount) {
-    const upgrade = new Upgrades(required, which, increaseType, amount);
-    upgrade.upgradeChecker();
+function buyUpgrade(id) {
+    const upgrade = upgrades.find(item => item.id === id)
+
+    if (gameState.numOfClicks >= upgrade.cost) {
+        gameState.numOfClicks -= upgrade.cost;
+        upgrade.apply();
+        updateClicks();
+    }
+
 }
 
-class Upgrades {
-    /**
-        Includes: 
-        - upgrade effects
-        - upgrade validator and upgrader
-     */
+// main here
+const mainClicker = document.getElementById('main-clicker');
+mainClicker.addEventListener('click', addClicks);
 
-    constructor(name, required, which, increaseType, amount) {
-        /**
-            * @param {*} required - the number of clicks needed for the upgarde
-            * @param {*} which - the type of upgrade (e.g. CPS or Clicker Button)
-            * @param {*} increaseType - the type of increase (e.g. multiply or add)
-            * @param {*} amount - the amount increased
-         */
-        this.name = name;
-        this.required = required;
-        this.which = which;
-        this.increaseType = increaseType;
-        this.amount = amount;
+const addOne = document.getElementById('add-one')
+addOne.addEventListener('click', () => buyUpgrade(0))
 
-        this.upgradeEffects = {
-        /** 
-         * map of the upgrade effects and arrow function for the effect
-         * 
-         * @param {*} which - click power or clicks per sec
-         * @param {*} amount - amount to be changed by
-         * @returns - new amount gained per click/sec
-         */
-
-        add: (which, amount) => which + amount,
-        multiply: (which, amount) => which * amount,
-
-    }
-    }
-
-    upgradeChecker() {
-        if (gameState.numOfClicks >= this.required) {
-            gameState.numOfClicks -= this.required;
-            
-            gameState[this.which] = this.upgradeEffects[this.increaseType](gameState[this.which], this.amount);
-
-            updateClicks();
-        }
-    }
-}
 
 const upgrades = [
-    new Upgrades("Stronger Clicks", 5, "clickPower", add, 1),
-    new Upgrades("Double the Power", 25, "clickPower", multiply, 2),
-    new Upgrades("Passive Income?", 25, "idleClickPower", add, 1)
+    {
+        id: 0,
+        name: "Stronger Clicks",
+        cost: 5,
+        level: 0,
+        apply: () => {gameState.clickPower += 1;}
+    },
+
+    {
+        id: 1,
+        name: "Double the Clickers!",
+        cost: 5,
+        level: 0,
+        apply: () => {gameState.clickPower ** 2;}
+    },
+
+    {
+        id: 2,
+        name: "Passive Income?",
+        cost: 25,
+        level: 0,
+        apply: () => {gameState.idleClickPower += 1;}
+    }
 ]
-
-// class Display extends Upgrades{
-//     /* 
-//     extend basically passes the construct function of the 
-//     upgrade class to this class and then use those values to display stuff
-//     idea: could instead do class upgrades extends display and then have clickpower and etc 
-//     as part of the constructor in the display class
-//     */ 
-
-//     }
