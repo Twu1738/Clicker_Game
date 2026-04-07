@@ -1,11 +1,13 @@
 .test-button{
     width: 10rem;
-    background-color: yellow;
+    border-width: 1px;
+    background-color: rgb(189, 90, 247);
 }
 
 .test-button:hover {
-    transition: .1s;
-    background-color: rgb(177, 177, 0);
+    transition: .1s ease;
+    border-width: 3px;
+    border-color: rgba(89, 11, 148, 0.759);
 }
 
 .parent-container {
