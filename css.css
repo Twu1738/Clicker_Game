@@ -1,13 +1,34 @@
-.test-button{
-    width: 10rem;
-    border-width: 1px;
-    background-color: rgb(189, 90, 247);
+:root {
+    --accent: #aa3bff;
+    --accent-bg: rgba(170, 59, 255, 0.1);
+    --accent-border: rgba(170, 59, 255, 0.5);
 }
 
-.test-button:hover {
-    transition: .1s ease;
-    border-width: 3px;
-    border-color: rgba(89, 11, 148, 0.759);
+.test-button{
+    width: 10rem;
+    border-radius: 4px;
+    color: var(--text-h);
+}
+
+.test-button{
+  font-size: 16px;
+  padding: 5px;
+  margin: 10px;
+
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
 .parent-container {
