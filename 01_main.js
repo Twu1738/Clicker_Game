@@ -19,6 +19,8 @@ function buyUpgrade(id) {
     if (gameState.numOfClicks >= upgrade.cost) {
         gameState.numOfClicks -= upgrade.cost;
         upgrade.apply();
+        upgrade.cost = Math.floor(upgrade.cost * 1.5)
+
         updateClicks();
     }
 
@@ -31,12 +33,18 @@ mainClicker.addEventListener('click', addClicks);
 const addOne = document.getElementById('add-one')
 addOne.addEventListener('click', () => buyUpgrade(0))
 
+const multiplyOne = document.getElementById('multiply-one')
+multiplyOne.addEventListener('click', () => buyUpgrade(1))
+
+const idleOne = document.getElementById('idle-one')
+idleOne.addEventListener('click', () => buyUpgrade(2))
+
 
 const upgrades = [
     {
         id: 0,
         name: "Stronger Clicks",
-        cost: 5,
+        cost: 1,
         level: 0,
         apply: () => {gameState.clickPower += 1;}
     },
@@ -44,26 +52,21 @@ const upgrades = [
     {
         id: 1,
         name: "Double the Clicks!",
-        cost: 5,
+        cost: 3,
         level: 0,
-        apply: () => {gameState.clickPower ** 2;}
+        apply: () => {gameState.clickPower *= 2;}
     },
 
     {
         id: 2,
         name: "Passive Income?",
-        cost: 25,
+        cost: 5,
         level: 0,
-        apply: () => {gameState.idleClickPower += 1;}
+        apply: () => {gameState.idleClickPower += 1; idleGain = true;}
     }
 ]
 
 // calls the cps function to add the idleClickPower every second
-
-if (gameState.idleClickPower >= 1) {
-    idleGain = true
-}
-
 if (idleGain = true) {
-    setInterval(addIdle, 1000) 
+    setInterval(() => {gameState.numOfClicks += gameState.idleClickPower;}, 1000) 
 }
