@@ -4,6 +4,12 @@ import {gameState, upgrades} from './02_gameState.js';
 // imports for functions
 import {updateClicks, addClicks, buyUpgrade} from './03_functions.js';
 
+    const buttons = document.createElement('button');
+    buttons.className = 'test-button';
+    buttons.innerHTML = "Hi"
+    const upgradeContainer = document.getElementById('upgrade-container');
+    upgradeContainer.appendChild(buttons)
+
 // main here
 const mainClicker = document.getElementById('main-clicker');
 mainClicker.addEventListener('click', addClicks);
