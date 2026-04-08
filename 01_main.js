@@ -9,17 +9,18 @@ import {updateClicks, addClicks, createUpgradeButton, buyUpgrade} from './03_fun
 const mainClicker = document.getElementById('main-clicker');
 mainClicker.addEventListener('click', addClicks);
 
-// upgrade buttons
+// fetches the upgrade button container
 const upgradeContainer = document.getElementById('upgrade-container');
 
-const addOneButton = createUpgradeButton(upgrades[0], 'cost-one' )
+// creates the upgrade buttons
+const addOneButton = createUpgradeButton(upgrades[0], 'cost-1' )
+const multiplyOne = createUpgradeButton(upgrades[1], 'cost-2')
+const idleOne = createUpgradeButton(upgrades[2], 'cost-3')
+
+// appends the upgrade buttons to the upgrade container
 upgradeContainer.appendChild(addOneButton)
-
-const multiplyOne = document.getElementById('multiply-one')
-multiplyOne.addEventListener('click', () => buyUpgrade(1, 'cost-2'))
-
-const idleOne = document.getElementById('idle-one')
-idleOne.addEventListener('click', () => buyUpgrade(2, 'cost-3'))
+upgradeContainer.appendChild(multiplyOne)
+upgradeContainer.appendChild(idleOne)
 
 // every second it adds the idle click power to counter
 setInterval(() => {gameState.numOfClicks += gameState.idleClickPower; 
