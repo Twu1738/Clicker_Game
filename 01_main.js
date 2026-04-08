@@ -13,6 +13,11 @@ function addClicks() {
     updateClicks();
 }
 
+function addIdle () {
+    gameState.numOfClicks += gameState.idleClickPower;
+    updateClicks();
+}
+
 function buyUpgrade(id) {
     const upgrade = upgrades.find(item => item.id === id)
 
@@ -62,11 +67,9 @@ const upgrades = [
         name: "Passive Income?",
         cost: 5,
         level: 0,
-        apply: () => {gameState.idleClickPower += 1; idleGain = true;}
+        apply: () => {gameState.idleClickPower += 1;}
     }
 ]
 
-// calls the cps function to add the idleClickPower every second
-if (idleGain = true) {
-    setInterval(() => {gameState.numOfClicks += gameState.idleClickPower;}, 1000) 
-}
+setInterval(() => {gameState.numOfClicks += gameState.idleClickPower; 
+    updateClicks()}, 1000)
