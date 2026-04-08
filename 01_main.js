@@ -2,20 +2,18 @@
 import {gameState, upgrades} from './02_gameState.js';
 
 // imports for functions
-import {updateClicks, addClicks, buyUpgrade} from './03_functions.js';
-
-    const buttons = document.createElement('button');
-    buttons.className = 'test-button';
-    buttons.innerHTML = "Hi"
-    const upgradeContainer = document.getElementById('upgrade-container');
-    upgradeContainer.appendChild(buttons)
+import {updateClicks, addClicks, createUpgradeButton, buyUpgrade} from './03_functions.js';
 
 // main here
+// main clicker button
 const mainClicker = document.getElementById('main-clicker');
 mainClicker.addEventListener('click', addClicks);
 
-const addOne = document.getElementById('add-one')
-addOne.addEventListener('click', () => buyUpgrade(0, 'cost-1'))
+// upgrade buttons
+const upgradeContainer = document.getElementById('upgrade-container');
+
+const addOneButton = createUpgradeButton(upgrades[0], 'cost-one' )
+upgradeContainer.appendChild(addOneButton)
 
 const multiplyOne = document.getElementById('multiply-one')
 multiplyOne.addEventListener('click', () => buyUpgrade(1, 'cost-2'))
