@@ -1,37 +1,8 @@
-const gameState = {
-    numOfClicks: 0,
-    clickPower: 1,
-    idleClickPower: 0
-}
+// imports for game data 
+import {gameState, upgrades} from './02_gameState.js';
 
-function updateClicks() {
-    document.getElementById("counter").textContent = gameState.numOfClicks;
-}
-
-function addClicks() {
-    gameState.numOfClicks += gameState.clickPower;
-    updateClicks();
-}
-
-function addIdle () {
-    gameState.numOfClicks += gameState.idleClickPower;
-    updateClicks();
-}
-
-function buyUpgrade(upgradeId, upgradeCostId) {
-    const upgrade = upgrades.find(item => item.id === upgradeId)
-
-    if (gameState.numOfClicks >= upgrade.cost) {
-        gameState.numOfClicks -= upgrade.cost;
-        upgrade.apply();
-        upgrade.cost = Math.floor(upgrade.cost * 1.5)
-
-        document.getElementById(upgradeCostId).textContent = upgrade.cost
-
-        updateClicks();
-    }
-
-}
+// imports for functions
+import {updateClicks, addClicks, buyUpgrade} from './03_functions.js';
 
 // main here
 const mainClicker = document.getElementById('main-clicker');
@@ -46,32 +17,6 @@ multiplyOne.addEventListener('click', () => buyUpgrade(1, 'cost-2'))
 const idleOne = document.getElementById('idle-one')
 idleOne.addEventListener('click', () => buyUpgrade(2, 'cost-3'))
 
-
-const upgrades = [
-    {
-        id: 0,
-        name: "Stronger Clicks",
-        cost: 1,
-        level: 0,
-        apply: () => {gameState.clickPower += 1;}
-    },
-
-    {
-        id: 1,
-        name: "Double the Clicks!",
-        cost: 3,
-        level: 0,
-        apply: () => {gameState.clickPower *= 2;}
-    },
-
-    {
-        id: 2,
-        name: "Passive Income?",
-        cost: 5,
-        level: 0,
-        apply: () => {gameState.idleClickPower += 1;}
-    }
-]
-
+// every second it adds the idle click power to counter
 setInterval(() => {gameState.numOfClicks += gameState.idleClickPower; 
     updateClicks()}, 1000)
