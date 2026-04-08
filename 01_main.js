@@ -18,13 +18,15 @@ function addIdle () {
     updateClicks();
 }
 
-function buyUpgrade(id) {
-    const upgrade = upgrades.find(item => item.id === id)
+function buyUpgrade(upgradeId, upgradeCostId) {
+    const upgrade = upgrades.find(item => item.id === upgradeId)
 
     if (gameState.numOfClicks >= upgrade.cost) {
         gameState.numOfClicks -= upgrade.cost;
         upgrade.apply();
         upgrade.cost = Math.floor(upgrade.cost * 1.5)
+
+        document.getElementById(upgradeCostId).textContent = upgrade.cost
 
         updateClicks();
     }
@@ -36,13 +38,13 @@ const mainClicker = document.getElementById('main-clicker');
 mainClicker.addEventListener('click', addClicks);
 
 const addOne = document.getElementById('add-one')
-addOne.addEventListener('click', () => buyUpgrade(0))
+addOne.addEventListener('click', () => buyUpgrade(0, 'cost-1'))
 
 const multiplyOne = document.getElementById('multiply-one')
-multiplyOne.addEventListener('click', () => buyUpgrade(1))
+multiplyOne.addEventListener('click', () => buyUpgrade(1, 'cost-2'))
 
 const idleOne = document.getElementById('idle-one')
-idleOne.addEventListener('click', () => buyUpgrade(2))
+idleOne.addEventListener('click', () => buyUpgrade(2, 'cost-3'))
 
 
 const upgrades = [
