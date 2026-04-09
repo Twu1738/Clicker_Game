@@ -18,7 +18,7 @@ export const upgrades = [
 
     {
         id: 1,
-        name: "Double the Clicks!",
+        name: "Double the Clicks",
         cost: 3,
         level: 0,
         maxLevel: 2,
@@ -27,7 +27,7 @@ export const upgrades = [
 
     {
         id: 2,
-        name: "Passive Income?",
+        name: "Passive Income",
         cost: 5,
         level: 0,
         maxLevel: 10,
