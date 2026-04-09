@@ -12,6 +12,7 @@ export const upgrades = [
         name: "Stronger Clicks",
         cost: 1,
         level: 0,
+        maxLevel: 10,
         apply: () => {gameState.clickPower += 1;}
     },
 
@@ -20,6 +21,7 @@ export const upgrades = [
         name: "Double the Clicks!",
         cost: 3,
         level: 0,
+        maxLevel: 2,
         apply: () => {gameState.clickPower *= 2;}
     },
 
@@ -28,6 +30,16 @@ export const upgrades = [
         name: "Passive Income?",
         cost: 5,
         level: 0,
+        maxLevel: 10,
+        apply: () => {gameState.idleClickPower += 1;}
+    },
+
+    {
+        id: 3,
+        name: "Even Stronger Clicks",
+        cost: 5,
+        level: 0,
+        maxLevel: 10,
         apply: () => {gameState.idleClickPower += 1;}
     }
 
