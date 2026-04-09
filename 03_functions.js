@@ -12,6 +12,15 @@ export function addClicks() {
     updateClicks();
 }
 
+// creates the upgrade buttons
+export function createUpgradeButton (upgrade, costId) {
+    const button = document.createElement('button');
+    button.className = 'test-button';
+    button.innerHTML = `${upgrade.name} Cost: <span id="${costId}">${upgrade.cost}</span>`
+    button.addEventListener('click', () => buyUpgrade(upgrade.id, costId))
+    return button
+}
+
 // checks user has enough clicks for upgrade and updates cost/level
 export function buyUpgrade(upgradeId, upgradeCostId) {
     const upgrade = upgrades.find(item => item.id === upgradeId)
