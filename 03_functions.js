@@ -16,7 +16,7 @@ export function addClicks() {
 }
 
 export function completedUpgrade() {
-    // 
+    // removes the upgrade from upgrade list
     upgrades.splice(0, 1);
     renderUpgrades()
 }
