@@ -15,7 +15,7 @@ export function addClicks() {
     updateClicks();
 }
 
-export function completedUpgrade() {
+export function completedUpgrade(index) {
     // accesses the first child element (i.e. the very top button)
     // and assigns it to the constant "button"
     const button = upgradeContainer.children[0]
@@ -25,7 +25,7 @@ export function completedUpgrade() {
 
     // removes the upgrade from upgrade list
     setTimeout(() => {
-        upgrades.splice(0, 1);
+        upgrades.splice(index, 1);
         renderUpgrades()
     }, 300);
 
@@ -65,10 +65,13 @@ export function buyUpgrade(upgradeId, upgradeCostId) {
     // finds the corresponding upgrade usign the ID 
     const upgrade = upgrades.find(item => item.id === upgradeId)
 
-    if (gameState.numOfClicks >= upgrade.cost 
-        && upgrade.maxLevel !== upgrade.level) {
+    if (upgrade.maxLevel === upgrade.level) {
+        completedUpgrade(upgradeId);
+    }
+
+    else if (gameState.numOfClicks >= upgrade.cost) {
         
-            gameState.numOfClicks -= upgrade.cost;
+        gameState.numOfClicks -= upgrade.cost;
         upgrade.apply();
         upgrade.cost = Math.floor(upgrade.cost * 1.5)
         upgrade.level += 1
@@ -79,7 +82,9 @@ export function buyUpgrade(upgradeId, upgradeCostId) {
     }
 
     else {
-        completedUpgrade();
+        console.log("Placeholder")
     }
+
+  
 
 }
