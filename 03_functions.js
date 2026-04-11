@@ -18,7 +18,7 @@ export function addClicks() {
 export function completedUpgrade(index) {
     // accesses the first child element (i.e. the very top button)
     // and assigns it to the constant "button"
-    const button = upgradeContainer.children[0]
+    const button = upgradeContainer.children[index]
     
     // adds the css class "removing"
     button.classList.add("removing")
@@ -65,11 +65,9 @@ export function buyUpgrade(upgradeId, upgradeCostId) {
     // finds the corresponding upgrade usign the ID 
     const upgrade = upgrades.find(item => item.id === upgradeId)
 
-    if (upgrade.maxLevel === upgrade.level) {
-        completedUpgrade(upgradeId);
-    }
-
-    else if (gameState.numOfClicks >= upgrade.cost) {
+    // verifies the user has enough clicks to buy the upgrade
+    // and applys the effects
+    if (gameState.numOfClicks >= upgrade.cost) {
         
         gameState.numOfClicks -= upgrade.cost;
         upgrade.apply();
@@ -80,11 +78,16 @@ export function buyUpgrade(upgradeId, upgradeCostId) {
 
         updateClicks();
     }
-
+    
+    // place holder for now, should make button turn red and 
+    // indicate that the user doesn't have enough clicks in the future
     else {
         console.log("Placeholder")
     }
-
-  
+ 
+    // if button reached max level, completedUpgrade activates
+    if (upgrade.maxLevel === upgrade.level) {
+        completedUpgrade(upgradeId);
+    }
 
 }
