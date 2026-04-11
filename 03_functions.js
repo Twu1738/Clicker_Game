@@ -16,9 +16,19 @@ export function addClicks() {
 }
 
 export function completedUpgrade() {
+    // accesses the first child element (i.e. the very top button)
+    // and assigns it to the constant "button"
+    const button = upgradeContainer.children[0]
+    
+    // adds the css class "removing"
+    button.classList.add("removing")
+
     // removes the upgrade from upgrade list
-    upgrades.splice(0, 1);
-    renderUpgrades()
+    setTimeout(() => {
+        upgrades.splice(0, 1);
+        renderUpgrades()
+    }, 300);
+
 }
 
 // creates the upgrade buttons
@@ -34,7 +44,7 @@ export function renderUpgrades () {
     for (let item = 0; item < visible && item < upgrades.length; item++) {
         // creates the button
         const button = document.createElement('button');
-        // cost id corresponds. to item
+        // cost id corresponds to the item
         let costId = item
         // retrieves the upgrade info for the upgrae
         const upgrade = upgrades[item]

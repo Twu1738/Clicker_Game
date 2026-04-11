@@ -20,6 +20,7 @@
   background: var(--accent-bg);
   border: 2px solid transparent;
   transition: border-color 0.3s;
+  transition: opacity 0.5s;
 
   &:hover {
     border-color: var(--accent-border);
@@ -29,6 +30,10 @@
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+}
+
+.test-button.removing {
+  opacity: 0;
 }
 
 .parent-container {
