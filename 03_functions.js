@@ -11,7 +11,8 @@ export function updateClicks() {
 
 // adds the clicks whenever user clicks "Click Me!"
 export function addClicks() {
-    gameState.numOfClicks += gameState.clickPower;
+    const clickPowerTotal = (gameState.clickPowerBase * gameState.clickPowerMultiplier)
+    gameState.numOfClicks += clickPowerTotal;
     updateClicks();
 }
 
